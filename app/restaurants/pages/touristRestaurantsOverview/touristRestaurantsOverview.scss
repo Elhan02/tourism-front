@@ -1,0 +1,102 @@
+@use'../../../styles/global.scss' as*;
+
+#main-container {
+    width: 1000px;
+    margin: 20px auto;
+}
+
+#selection-container {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #dcdcdc;
+    margin: 20px;
+
+    #view-options-section,
+    #sorting-section {
+        margin-bottom: 10px;
+    }
+
+}
+
+#card-container {
+    display: block;
+    margin: 20px auto;
+
+    .restaurant-card {
+        display: flex;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        margin: 20px;
+        background-color: white;
+
+        &:hover {
+            transform: scale(1.02);
+            transition: transform 0.3s ease;
+        }
+    }
+
+    .name-side {
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+        padding: 20px;
+
+    }
+
+    .description-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 55%;
+        padding: 10px;
+    }
+
+    .name {
+        font-size: 20px;
+        font-weight: bold;
+    }
+}
+
+select {
+    padding: 8px;
+    background-color: $button-color;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    border-bottom: 3px solid #333;
+}
+
+label {
+    color: #808080;
+}
+
+
+.vertical-line {
+    width: 1px;
+    background-color: #ccc;
+    margin: 10px 10px;
+    align-self: stretch;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+
+    button {
+        background-color: #F8F8F8;
+        font-weight: bold;
+        color: $button-color;
+
+        &:disabled {
+            color: #E2E2E2;
+        }
+    }
+}
+
+.pagination span {
+    margin: 0 10px;
+    font-size: 20px;
+}

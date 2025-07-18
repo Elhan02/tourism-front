@@ -1,4 +1,5 @@
 import { Restaurant } from "../models/restaurant.model";
+import { RestaurantsResult } from "../models/restaurant.result.model";
 import { RestaurantFormData } from "../models/restaurantForm.data.model";
 
 
@@ -41,6 +42,32 @@ export class RestaurantsServices {
                 console.log(`Error: `, error.status);
                 throw error
             })
+    }
+
+    getAllPublishRestaurants(orderBy: string = "Name", orderDirection: string = "ASC",  currentPage: number = 1, pageSize: number = 10): Promise<RestaurantsResult>{
+        const queryParams = new URLSearchParams({
+            orderBy: orderBy,
+            orderDirection: orderDirection,
+            pageSize: pageSize.toString(),
+            page: currentPage.toString()
+        });
+
+        const url = `${this.apiUrl}?${queryParams.toString()}`;
+
+       return fetch(url)
+        .then(response=>{
+            if(!response.ok){
+                throw{status:response.status, message: response.text}
+            }
+            return response.json();
+        })
+        .then((restaurants: RestaurantsResult)=>{
+            return restaurants
+        })
+        .catch(error=>{
+            console.log(`Error: `, error.status)
+            throw error
+        });
     }
 
 
