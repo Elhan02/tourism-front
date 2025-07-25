@@ -47,6 +47,20 @@
                 width: 60%;
                 text-align: center;
             }
+        .button-wrapper {
+            width: 80%;
+            text-align: right;
+
+            button {
+                width: 200px;
+                height: 50px;
+                font-size: 18px;
+                transition: transform 0.1s ease;
+                &:hover {
+                    transform: scale(1.03);
+                }
+            }
+        }
     }
 
     .keypoint-details {
@@ -81,3 +95,79 @@
         }
     }
 }
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 30px;
+  border-radius: 10px;
+  width: 25%;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  position: relative;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    #guestsInputError {
+        color: $warn-color;
+        font-size: 12px;
+    }
+  }
+  input, button {
+    padding: 10px;
+    font-size: 16px;
+  }
+  button {
+    margin-top: 20px;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+    &:hover:not(:disabled) {
+        transform: scale(1.02);
+    }
+  }
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.resultMessage {
+  width: 250px;
+  height: 70px;
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  padding: 15px 25px;
+  border-radius: 8px;
+  z-index: 9999;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  text-align: center;
+  font-size: 17px;
+}
+

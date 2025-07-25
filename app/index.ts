@@ -1,25 +1,47 @@
 const loginLink = document.querySelector('#login') as HTMLElement;
-const logoutLink = document.querySelector('#logout') as HTMLElement;
+const userLink = document.querySelector('#user') as HTMLElement;
+const username = document.querySelector('.username') as HTMLElement;
 const restaurantsLink = document.querySelector('#restaurants') as HTMLElement;
 const toursLink = document.querySelector('#tours') as HTMLElement;
 const touristToursLink = document.querySelector('#tourist-tours') as HTMLElement;
 const touristRestaurantLink = document.querySelector('#tourist-restaurants') as HTMLElement;
+const touristReservations = document.querySelector('#myReservations') as HTMLElement;
+
+function InitializeAvatarOptions(): void {
+    const avatarBtn = document.getElementById('avatarBtn');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+
+    avatarBtn.addEventListener('click', () => {
+        dropdownMenu.style.display = dropdownMenu.style.display === 'flex' ? 'none' : 'flex';
+    });
+
+    document.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        if (!avatarBtn.contains(target) && !dropdownMenu.contains(target)) {
+            dropdownMenu.style.display = 'none';
+        }
+  });
+}
 
 function setUserLoginState(isLoggedIn: boolean) {
     if (isLoggedIn) {
         loginLink.style.display = 'none';
-        logoutLink.style.display = 'block';
+        userLink.style.display = 'block';
+        InitializeAvatarOptions()
+        username.textContent = localStorage.getItem('username');
         const userRole = localStorage.getItem("role");
         if(userRole.trim()==="vlasnik"){
             restaurantsLink.style.display = 'block';
             toursLink.style.display = 'none';
             touristToursLink.style.display = 'none';
             touristRestaurantLink.style.display = 'none';
+            touristReservations.style.display = 'none';
         } else if(userRole.trim()==="vodic"){
             restaurantsLink.style.display = 'none';
             toursLink.style.display = 'block';
             touristToursLink.style.display = 'none';
             touristRestaurantLink.style.display = 'none';
+            touristReservations.style.display = 'none';
         }else if (userRole.trim()==='turista'){
             restaurantsLink.style.display = 'none';
             toursLink.style.display = 'none';
@@ -28,12 +50,12 @@ function setUserLoginState(isLoggedIn: boolean) {
         }
     } else {
         loginLink.style.display = 'block';
-        logoutLink.style.display = 'none';
+        userLink.style.display = 'none';
         window.location.href = "/app/users/pages/login/login.html"
     }
 }
 
-function handleLogout() {
+export function handleLogout() {
     localStorage.removeItem('username');
     localStorage.removeItem('id');
     localStorage.removeItem('role');
@@ -48,7 +70,7 @@ function checkLoginStatus() {
     }
 }
 
- const logoutElement = document.querySelector('#logout');
+ const logoutElement = document.querySelector('#logoutBtn');
 if (logoutElement) {
     logoutElement.addEventListener('click', handleLogout);
 }

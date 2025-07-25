@@ -3,22 +3,39 @@ import { TourService } from "../../service/tour.service.js";
 const tourService = new TourService();
 
 function Initialize(): void {
-  const logoutElement = document.querySelector("#logout");
-  if (logoutElement) {
-    logoutElement.addEventListener("click", function () {
-      localStorage.removeItem("id");
-      localStorage.removeItem("username");
-      localStorage.removeItem("role");
-      window.location.href = "/app/users/pages/login/login.html";
-    });
-  }
-  //End of logout function
-
+  InitializeAvatarOptions();
   const addTourBtn = document.querySelector("#addTourBtn");
   addTourBtn.addEventListener("click", function () {
     window.location.href = "../toursForm/toursForm.html";
   });
   renderData();
+}
+
+function InitializeAvatarOptions(): void {
+    const avatarBtn = document.getElementById('avatarBtn');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    const logoutElement = document.querySelector("#logoutBtn");
+    const username = document.querySelector('.username') as HTMLElement;
+    username.textContent = localStorage.getItem('username');
+
+    avatarBtn.addEventListener('click', () => {
+        dropdownMenu.style.display = dropdownMenu.style.display === 'flex' ? 'none' : 'flex';
+    });
+
+    document.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        if (!avatarBtn.contains(target) && !dropdownMenu.contains(target)) {
+            dropdownMenu.style.display = 'none';
+        }
+  });
+
+    logoutElement.addEventListener("click", function (event) {
+        event.stopPropagation();
+        localStorage.removeItem("id");
+        localStorage.removeItem("username");
+        localStorage.removeItem("role");
+    });
+
 }
 
 function renderData(): void {
