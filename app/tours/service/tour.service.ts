@@ -3,6 +3,7 @@ import { Tour } from "../model/tour.model";
 import { TourFormData } from "../model/tourFormData.model";
 import { KeyPointFormData } from "../model/keyPointFormData.model";
 import { TourResults } from "../model/TourResults";
+import { Reservation } from "../model/reservation.model";
 
 export class TourService {
   private apiUrl: string;
@@ -197,6 +198,67 @@ export class TourService {
       .catch((error) => {
         console.error(
           "An error occured while deleting keyPoint. Please try again."
+        );
+        console.error(`Error: ${error.message}  Status: ${error.status}`);
+      });
+  }
+
+  getTouristReservations(userId: number): Promise<Reservation[]> {
+    return fetch(`${this.apiUrl}/reservations/${userId}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw { status: response.status, message: response.text };
+        }
+        return response.json();
+      })
+      .catch((error) => {
+        console.error(
+          "Error occured while trying to get reservations. Please try again."
+        );
+        console.error(`Error: ${error.message}  Status: ${error.status}`);
+        throw error;
+      });
+  }
+
+  createReservation(userId: number, guestsCount: number, tourId: number) {
+    const data = {
+      tourId: tourId,
+      touristId: userId,
+      guests: guestsCount
+    };
+    return fetch(`${this.apiUrl}/reservations`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    })
+    .then((response) => {
+      if (!response.ok) {
+        throw { status: response.status, message: response.text() };
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      console.error("Error: " + error.status);
+      if (error.status && error.status === 400) {
+        return error.message;
+      } else {
+        console.error(
+          "An error occured while creating keypoint. Please try again"
+        );
+      }
+    })
+  }
+
+  cancelReservation(reservationId: number) {
+   return fetch(`${this.apiUrl}/reservations/${reservationId}`, { method: 'DELETE' })
+      .then((response) => {
+        if (!response.ok) {
+          throw { status: response.status, message: response.text };
+        }
+      })
+      .catch((error) => {
+        console.error(
+          "An error occured while deleting reservation. Please try again."
         );
         console.error(`Error: ${error.message}  Status: ${error.status}`);
       });

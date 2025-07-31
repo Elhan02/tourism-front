@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GastroTrip - Tours</title>
+    <title>GastroTrip - Reservations</title>
     <link
       rel="stylesheet"
-      href="../../../../dist/tours/pages/touristTourDetails/touristTourDetails.css"
+      href="../../../../dist/tours/pages/TouristTourReservations/touristTourReservations.css"
     />
     <script
       type="module"
-      src="../../../../dist/tours/pages/touristTourDetails/touristTourDetails.js"
+      src="../../../../dist/tours/pages/TouristTourReservations/touristTourReservations.js"
     ></script>
     <script
       src="https://kit.fontawesome.com/5f9b15613a.js"
@@ -38,32 +38,19 @@
         </li>
       </ul>
     </nav>
-    <div class="resultMessage"></div>
-    <div class="container">
-      <div class="tour-details">
-        <div class="tour-header">
-          <div class="startTime-maxGuests"></div>
-        </div>
-        <hr />
-        <div class="tour-description"></div>
-        <div class="button-wrapper">
-          <button type="button" id="bookBtn">Book Now</button>
-        </div>
-      </div>
-      <div class="keypoint-details"></div>
-    </div>
-
-    <div id="bookingModal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Book this tour</h2>
-        <form id="bookingForm">
-          <label for="guests">Number of guests:</label>
-          <input type="number" id="guests" name="guests" min="1" required />
-          <span class="hidden" id="guestsInputError">This field is required</span>
-          <button type="button" id="bookTourBtn" disabled>Confirm Booking</button>
-        </form>
-      </div>
+    <h1>My reservations</h2>
+    <div class="table-container">
+      <table class="clean-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Starting date</th>
+            <th>Number of guests</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
     </div>
   </body>
 </html>
