@@ -1,7 +1,12 @@
 import { Meal } from "../../models/meal.model";
-import { RestaurantsServices } from "../../services/restaurant.services.js";
+import { RestaurantReservationService } from "../../services/restaurant.reservation.service.js";
+import { RestaurantsServices } from "../../services/restaurant.service.js";
+import { RestaurantReservationFormData } from "../../models/restaurant.reservation.formData.model.js";
+import { RestaurantReservation } from "../../models/restaurant.reservation";
+import { InitializeAvatarOptions } from "../../../../dist/utils/user.avatar.function.js"
 
 const restaurantsService = new RestaurantsServices();
+const restaurantReservationService = new RestaurantReservationService();
 
 function renderData(): void {
     const urlParams = new URLSearchParams(window.location.search)
@@ -55,6 +60,85 @@ function renderData(): void {
                 capacityElement.innerHTML = "<i class=\"fa-solid fa-user\"></i>";
                 capacityElement.append(` x ${restaurant.capacity.toString()}`);
                 restaurantDescriptionSection.appendChild(capacityElement);
+
+                const butttonContainer = document.createElement('div');
+                butttonContainer.classList.add('reserve-container');
+                const reserveBtn = document.createElement('button');
+                reserveBtn.id = "reserveBtn";
+                reserveBtn.textContent = "Reserve";
+
+                const modalInputForm = document.querySelector('#reservation-intput-form') as HTMLFormElement;
+                reserveBtn.onclick = function () {
+                    const reservationInputModal = document.querySelector(".modal") as HTMLDivElement;
+                    modalInputForm.reset();
+                    const errorMessage = document.querySelector('#reservationDate-errorMessage') as HTMLSpanElement;
+                    errorMessage.textContent = '';
+            
+                    reservationInputModal.style.display = "flex";
+                    checkValidity();
+                }
+
+                const confirmReservationBtn = document.querySelector('#confirmReservationBtn') as HTMLButtonElement;
+                confirmReservationBtn.onclick = function () {
+                    const urlParams = new URLSearchParams(window.location.search)
+                    const restaurantId = urlParams.get('id');
+
+                    const resultModal = document.querySelector('.modal2') as HTMLDivElement;
+                    const resultModalText = document.querySelector('#modal-text') as HTMLParagraphElement;
+                    const resultModalContent = document.querySelector('.result-modal-content') as HTMLDivElement;
+
+                    const reqBody: RestaurantReservationFormData = getReservationData();
+
+                    (async () => {
+                        try {
+                            const restaurantReservation = await restaurantsService.createRestaurantReservation(restaurantId, reqBody);
+                            resultModal.style.display = 'flex';
+                            resultModalContent.classList.remove('error');
+                            const reservationDay = new Date(restaurantReservation.reservationDate).getUTCDate();
+                            const reservationMonth = new Date(restaurantReservation.reservationDate).getMonth() + 1;
+                            const reservationYear = new Date(restaurantReservation.reservationDate).getFullYear();
+                            resultModalText.textContent = `You successfully created restaurant reservation for ${restaurantReservation.mealType} on ${reservationDay}.${reservationMonth}.${reservationYear}.`;
+                            setTimeout(() => {
+                                resultModal.style.display = 'none';
+                            }, 4000)
+                        } catch (error: unknown) {
+                            resultModal.style.display = 'flex';
+                            resultModalContent.classList.add('error');
+                            if (error instanceof Error) {
+                                resultModalText.textContent = error.message
+                                setTimeout(() => {
+                                    resultModal.style.display = 'none';
+                                }, 4000)
+                            } else {
+                                resultModalText.textContent = "An unknown error occurred.";
+                                setTimeout(() => {
+                                    resultModal.style.display = 'none';
+                                }, 4000)
+                            }
+                        }
+                    })();
+
+                }
+
+                const closeElement = document.querySelector('.close') as HTMLSpanElement;
+                const reservationInputModal = document.querySelector(".modal") as HTMLDivElement;
+                const reservationInputModalContext = document.querySelector(".input-modal-content") as HTMLDivElement;
+
+                reservationInputModal.onclick = function () {
+                    reservationInputModal.style.display = "none";
+                }
+
+                reservationInputModalContext.onclick = (e) => {
+                    e.stopPropagation();
+                }
+
+                closeElement.onclick = function () {
+                    reservationInputModal.style.display = "none";
+                }
+
+                butttonContainer.appendChild(reserveBtn);
+                restaurantDescriptionSection.appendChild(butttonContainer);
+
 
                 restautrantContainer.appendChild(restaurantDescriptionSection);
 
@@ -111,17 +195,75 @@ function renderData(): void {
     }
 }
 
-const logout = document.querySelector('#logout');
-logout.addEventListener('click', function () {
-    handleLogout()
-    window.location.href = "../../../users/pages/login/login.html";
+const mealTypeInput = document.querySelector("#mealType") as HTMLSelectElement;
+const reservationDateInput = document.querySelector("#reservationDate") as HTMLInputElement;
+const numberOfGuestsInput = document.querySelector("#number-of-guests") as HTMLInputElement;
+
+const confirmReservationBtn = document.querySelector('#confirmReservationBtn') as HTMLButtonElement;
+
+function getReservationData(): RestaurantReservationFormData {
+
+    const touristId = parseInt(localStorage.getItem("id"));
+
+    const mealType = (mealTypeInput.value).trim().toLowerCase();
+    const reservationDate = new Date(reservationDateInput.value);
+
+
+    if (mealType === 'breakfast') {
+        reservationDate.setUTCHours(8, 0, 0)
+    } else if (mealType === 'lunch') {
+        reservationDate.setUTCHours(13, 0, 0)
+    } else if (mealType === 'dinner') {
+        reservationDate.setUTCHours(18, 0, 0)
+    }
+    const numberOfGuests = parseInt(numberOfGuestsInput.value);
+    checkValidity()
+    const reservationReqBody: RestaurantReservationFormData = { touristId, mealType, reservationDate, numberOfGuests }
+    return reservationReqBody;
+}
+
+function isMealTypeValid(mealType: HTMLSelectElement): boolean {
+    return mealType.value.trim().length !== 0;
+}
+
+function isReservationDateValid(reservationDate: HTMLInputElement): boolean {
+    return new Date(reservationDate.value) >= new Date()
+}
+
+function isNumberOfGuestsValid(numberOfGuests: HTMLInputElement): boolean {
+    return !isNaN(parseInt(numberOfGuests.value));
+}
+
+function checkValidity(): void {
+    if (isMealTypeValid(mealTypeInput) && isReservationDateValid(reservationDateInput) && isNumberOfGuestsValid(numberOfGuestsInput)) {
+        confirmReservationBtn.disabled = false;
+    } else {
+        confirmReservationBtn.disabled = true;
+    }
+}
+
+mealTypeInput.addEventListener('blur', () => {
+    checkValidity();
+})
+reservationDateInput.addEventListener('blur', () => {
+    const errorMessage = document.querySelector('#reservationDate-errorMessage') as HTMLSpanElement;
+    if (!isReservationDateValid(reservationDateInput)) {
+        const errorMessage = document.querySelector('#reservationDate-errorMessage') as HTMLSpanElement;
+        errorMessage.style.color = '#d9534f';
+        errorMessage.textContent = "Reservation date cannot be in the past.";
+        checkValidity();
+    } else {
+        errorMessage.textContent = '';
+        checkValidity();
+    }
+
+
+})
+numberOfGuestsInput.addEventListener('blur', () => {
+    checkValidity();
 })
 
 
-function handleLogout() {
-    localStorage.removeItem('username');
-    localStorage.removeItem('role');
-    localStorage.removeItem('id');
-}
+InitializeAvatarOptions();
 
 addEventListener("DOMContentLoaded", renderData)

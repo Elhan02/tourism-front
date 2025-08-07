@@ -1,4 +1,5 @@
-import { RestaurantsServices } from "../../services/restaurant.services.js";
+import { RestaurantsServices } from "../../services/restaurant.service.js";
+import { InitializeAvatarOptions } from "../../../utils/user.avatar.function.js";
 
 
 const restauranService = new RestaurantsServices();
@@ -7,16 +8,12 @@ let currentPage = 1;
 
 function intializationFrom(): void {
 
-    logout.addEventListener('click', function () {
-    handleLogout()
-    window.location.href = "../../../users/pages/login/login.html";
-})
     const sortDropdown = document.querySelector('#sortDropdown') as HTMLSelectElement;
     const orderDropdown = document.querySelector('#orderDropdown') as HTMLSelectElement;
+    const pageSize = document.querySelector("#pageSize") as HTMLSelectElement;
     const prevPageBtn = document.querySelector('#prevPage') as HTMLButtonElement;
     const nextPageBtn = document.querySelector('#nextPage') as HTMLButtonElement;
-    const pageSize = document.querySelector("#pageSize") as HTMLSelectElement;    
-    
+        
 
     sortDropdown.addEventListener('change', () => {
         renderData(sortDropdown.value, orderDropdown.value, currentPage, parseInt(pageSize.value))
@@ -102,11 +99,6 @@ function renderData(orderBy: string = "name", orderDirection: string = "ASC", cu
         })
 }
 
-const logout = document.querySelector('#logout');
-function handleLogout() {
-    localStorage.removeItem('username');
-    localStorage.removeItem('role');
-    localStorage.removeItem('id');
-}
+InitializeAvatarOptions();
 
 addEventListener('DOMContentLoaded', intializationFrom)

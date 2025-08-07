@@ -20,9 +20,18 @@
             <li class="nav-item" id="restaurants">
                 <a href=""><strong>Restaurants</strong></a>
             </li>
-
-            <li class="nav-item" id="logout"><a href="../../../users/pages/login/login.html">Logout</a></li>
-            <li class="nav-item" id="user"></li>
+            <li class="nav-item" id="user">
+                <p class="username"></p>
+                <div class="user-menu">
+                    <div class="avatar"><i class="fa-regular fa-circle-user" id="avatarBtn"></i></div>
+                    <div class="dropdown" id="dropdownMenu">
+                        <a href="../../../tours/pages/TouristTourReservations/touristTourReservations.html" id="myReservations"><i class="fa-solid fa-book"></i> My Tour Reservations</a>
+                        <a href="../turistRestaurantReservation/turistRestaurantReservation.html" id="myRestaurantReservations"><i class="fa-solid fa-book"></i> My Restaurnat Reservations</a>
+                        <a href="../../../index.html" id="logoutBtn"><i
+                                class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+                    </div>
+                </div>
+            </li>
         </ul>
     </nav>
     <div id="main-container">
@@ -53,10 +62,10 @@
             </div>
 
         </div>
-<div id="card-container">
-   
-</div>
-        
+        <div id="card-container">
+
+        </div>
+
         <div class="pagination">
             <button id="prevPage" disabled><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
             <span id="page-info">1 of 1</span>
@@ -64,7 +73,8 @@
         </div>
     </div>
 
-    <script  type="module" src="../../../../dist/restaurants/pages/touristRestaurantsOverview/touristRestaurantsOverview.js"></script>
+    <script type="module"
+        src="../../../../dist/restaurants/pages/touristRestaurantsOverview/touristRestaurantsOverview.js"></script>
 </body>
 
 </html>

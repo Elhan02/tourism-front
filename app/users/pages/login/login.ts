@@ -1,8 +1,9 @@
 import { UserService } from "../../service/user.service.js";
 
+
 const userService = new UserService();
 const loginLink = document.querySelector('#login') as HTMLElement;
-const logoutLink = document.querySelector('#logout') as HTMLElement;
+const logoutLink = document.querySelector('#logoutBtn') as HTMLElement;
 const submitButton = document.querySelector("#submit") as HTMLElement;
 
 function setUserLoginState(isLoggedIn: boolean) {
@@ -18,7 +19,7 @@ function setUserLoginState(isLoggedIn: boolean) {
 
 function handleLogin(event: Event) {
     event.preventDefault();
-    
+
     const form = document.querySelector("form") as HTMLFormElement;
     const formData = new FormData(form);
     const username = formData.get("username") as string;
@@ -56,9 +57,22 @@ if (submitButton) {
     submitButton.addEventListener("click", handleLogin);
 }
 
-const logoutElement = document.querySelector('#logout');
+const logoutElement = document.querySelector('#logoutBtn');
 if (logoutElement) {
     logoutElement.addEventListener('click', handleLogout);
 }
+
+const avatarBtn = document.getElementById('avatarBtn');
+const dropdownMenu = document.getElementById('dropdownMenu');
+avatarBtn.addEventListener('click', () => {
+    dropdownMenu.style.display = dropdownMenu.style.display === 'flex' ? 'none' : 'flex';
+});
+
+document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    if (!avatarBtn.contains(target) && !dropdownMenu.contains(target)) {
+        dropdownMenu.style.display = 'none';
+    }
+});
 
 checkLoginStatus();

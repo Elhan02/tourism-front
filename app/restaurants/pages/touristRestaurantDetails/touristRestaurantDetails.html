@@ -20,16 +20,57 @@
             <li class="nav-item" id="restaurants">
                 <a href="../touristRestaurantsOverview/touristRestaurantsOverview.html">Restaurants</a>
             </li>
-
-            <li class="nav-item" id="logout"><a href="../../../users/pages/login/login.html">Logout</a></li>
-            <li class="nav-item" id="user"></li>
+            <li class="nav-item" id="user">
+                <p class="username"></p>
+                <div class="user-menu">
+                    <div class="avatar"><i class="fa-regular fa-circle-user" id="avatarBtn"></i></div>
+                    <div class="dropdown" id="dropdownMenu">
+                        <a href="../../../tours/pages/TouristTourReservations/touristTourReservations.html" id="myReservations"><i class="fa-solid fa-book"></i> My Tour Reservations</a>
+                        <a href="../turistRestaurantReservation/turistRestaurantReservation.html" id="myRestaurantReservations"><i class="fa-solid fa-book"></i> My Restaurnat Reservations</a>
+                        <a href="../../../index.html" id="logoutBtn"><i
+                                class="fa-solid fa-arrow-right-from-bracket"></i> &nbsp;Logout</a>
+                    </div>
+                </div>
+            </li>
         </ul>
     </nav>
-    <div id="container">
 
+    <div id="container">
         <div id="main-container">
-            
-            </div>
+
+        </div>
+    </div>
+    </div>
+
+    <div id="inputModal" class="modal">
+        <div class="input-modal-content">
+            <span class="close">&times;</span>
+            <h2>Restaurant Reservation</h2>
+            <form id="reservation-intput-form">
+                <label for="reservationDate">Reservation date:</label>
+                <input type="date" id="reservationDate" name="reservationDate" required>
+                <span class="error-message" id="reservationDate-errorMessage"></span>
+
+                <label for="mealType">Meal</label>
+                <select name="mealType" id="mealType">
+                    <option value="breakfast">Breakfast (08:00)</option>
+                    <option value="lunch">Lunch (13:00)</option>
+                    <option value="dinner">Dinner (18:00)</option>
+                </select>
+
+                <label for="number-of-guests">Number of Guests</label>
+                <input type="number" id="number-of-guests" name="number-of-guests" required>
+                <div class="tooltip-wrapper">
+                    <button type="button" id="confirmReservationBtn">Confirm reservation</button>
+                    <span class="tooltiptext">All fields are required</span>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="modal1" class="modal2">
+        <div class="result-modal-content">
+            <p id="modal-text"></p>
         </div>
     </div>
 

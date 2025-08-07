@@ -15,8 +15,16 @@
             <li class="nav-item"><a href="../../../index.html"><b>GastroTrip</b></a></li>
             <li class="nav-item" id="restaurants"><a
                     href="../../../restaurants/pages/restaurants/restaurants.html">Restaurants</a></li>
-            <li class="nav-item" id="logout"><a href="../../../users/pages/login/login.html">Logout</a></li>
-            <li class="nav-item" id="user"></li>
+            <li class="nav-item" id="user">
+                <p class="username"></p>
+                <div class="user-menu">
+                    <div class="avatar"><i class="fa-regular fa-circle-user" id="avatarBtn"></i></div>
+                    <div class="dropdown" id="dropdownMenu">
+                        <a href="../../../index.html" id="logoutBtn"><i
+                                class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+                    </div>
+                </div>
+            </li>
         </ul>
     </nav>
 
@@ -138,40 +146,40 @@
             <div id="publish-container">
                 <div id="publish-data">
 
-               
-                <h2 id="publish-restaurant-title">Restaurant</h2>
-                <div id="restaurant-card-container">
 
-                </div>
+                    <h2 id="publish-restaurant-title">Restaurant</h2>
+                    <div id="restaurant-card-container">
 
-                <div id="meal-table">
-                    <h2>Meals</h2>
-                    <div id="table-scroll-meal">
-                    <table id="publish-meals-table">
-                        <thead>
-                            <tr>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Ingredients</th>
-                            <th>Image URL</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                        
-                    </table>
                     </div>
+
+                    <div id="meal-table">
+                        <h2>Meals</h2>
+                        <div id="table-scroll-meal">
+                            <table id="publish-meals-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                        <th>Ingredients</th>
+                                        <th>Image URL</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="loading-message" class="hidden">Publising resturant, please wait...</div>
+                    <div id="success-message" class="hidden">Restaurant is successfully Published.</div>
+
+                    <div class="button">
+                        <button type="button" id="publishBtn">Publish</button>
+                    </div>
+
                 </div>
-
-                <div id="loading-message" class="hidden">Publising resturant, please wait...</div>
-                <div id="success-message" class="hidden">Restaurant is successfully Published.</div>
-
-                <div class="button">
-                    <button type="button" id="publishBtn">Publish</button>
-                </div>
-
-             </div>
             </div>
 
 
