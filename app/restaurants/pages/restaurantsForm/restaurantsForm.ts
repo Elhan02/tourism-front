@@ -3,7 +3,8 @@ import { MealFormData } from "../../models/mealFormData.model.js";
 import { Restaurant } from "../../models/restaurant.model.js";
 import { RestaurantFormData } from "../../models/restaurantForm.data.model.js";
 import { MealService } from "../../services/meal.service.js";
-import { RestaurantsServices } from "../../services/restaurant.services.js";
+import { RestaurantsServices } from "../../services/restaurant.service.js";
+import { InitializeAvatarOptions } from "../../../utils/user.avatar.function.js";
 
 const restaurantServices = new RestaurantsServices();
 const mealService = new MealService();
@@ -679,17 +680,7 @@ function publishRestaurant(): void {
     }
 }
 
-const logout = document.querySelector('#logout');
-function handleLogout() {
-    localStorage.removeItem('username');
-    localStorage.removeItem('role');
-    localStorage.removeItem('id');
-}
-
-logout.addEventListener('click', function () {
-    handleLogout()
-    window.location.href = "../../../users/pages/login/login.html";
-})
+InitializeAvatarOptions();
 
 document.addEventListener('DOMContentLoaded', function () {
     initializationForm()

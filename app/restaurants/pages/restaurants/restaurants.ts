@@ -1,20 +1,10 @@
 
 import { Restaurant } from "../../models/restaurant.model.js";
-import { RestaurantsServices } from "../../services/restaurant.services.js"
+import { RestaurantsServices } from "../../services/restaurant.service.js"
+import { InitializeAvatarOptions } from "../../../utils/user.avatar.function.js";
 
 const restaurantsServices = new RestaurantsServices();
 
-const logout = document.querySelector('#logout') as HTMLElement;
-function handleLogout() {
-    localStorage.removeItem("username");
-    localStorage.removeItem('role');
-    localStorage.removeItem('id');
-}
-
-logout.addEventListener('click', function () {
-    handleLogout();
-    window.location.href = "../../../users/pages/login/login.html";
-})
 
 function renderData(): void {
     const id = localStorage.getItem("id");
@@ -142,12 +132,12 @@ function deleteRestaurant(restaurants: Restaurant[], i: number) {
         });
 }
 
+InitializeAvatarOptions();
+
 document.addEventListener('DOMContentLoaded', () => {
     const addBtn = document.querySelector('#addBtn')
     addBtn.addEventListener('click', function () {
         window.location.href = "../restaurantsForm/restaurantsForm.html"
     });    
     renderData();
-    const restaurantMainPageTitle = document.querySelector('#user') as HTMLLinkElement;
-    restaurantMainPageTitle.textContent = `${localStorage.getItem('username')}`
 })

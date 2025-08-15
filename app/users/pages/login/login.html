@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="../../../../dist/users/pages/login/login.css">
+    <script src="https://kit.fontawesome.com/b89b4860cf.js" crossorigin="anonymous"></script>
     <script type="module" src="../../../../dist/users/pages/login/login.js"></script>
 </head>
 
@@ -14,8 +15,20 @@
         <ul class="nav-list">
             <li class="nav-item"><a href="../../../index.html"><b>GastroTrip</b></a></li>
             <li class="nav-item" id="restaurants"><a href="../../../restaurants/pages/restaurants/restaurants.html"><h5>Restaurants</h5></a></li>
-            <li class="nav-item" id="login"><a href="login.html">Login</a></li>
-            <li class="nav-item" id="logout"><a href="../../../index.html">Logout</a></li>
+             <li class="nav-item" id="user">
+                <p class="username"></p>
+                <div class="user-menu">
+                    <div class="avatar"><i class="fa-regular fa-circle-user" id="avatarBtn"></i></div>
+                    <div class="dropdown" id="dropdownMenu">
+                        <a href="../../../index.html" id="logoutBtn"><i
+                                class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+                        <a href="login.html" id="login"><i
+                                class="fa-solid fa-arrow-right-from-bracket"></i> Login</a>
+                    </div>
+                </div>
+            </li>
+            <!-- <li class="nav-item" id="login"><a href="login.html">Login</a></li>
+            <li class="nav-item" id="logout"><a href="../../../index.html">Logout</a></li> -->
         </ul>
     </nav>
     <div id="loginForm">
