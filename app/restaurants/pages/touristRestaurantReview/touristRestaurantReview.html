@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Restaurant Reservations</title>
+    <link rel="stylesheet"
+        href="../../../../dist/restaurants/pages/touristRestaurantReview/touristRestaurantReview.css">
+    <script src="https://kit.fontawesome.com/b89b4860cf.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="../../../index.html"><b>GastroTrip</b></a></li>
+            <li class="nav-item" id="tourist-tours"><a
+                    href="../../../tours/pages/touristTours/touristTours.html">Tours</a></li>
+            <li class="nav-item" id="restaurants"><a
+                    href="../touristRestaurantsOverview/touristRestaurantsOverview.html">Restaurants</a></li>
+            <li class="nav-item" id="user">
+                <p class="username"></p>
+                <div class="user-menu">
+                    <div class="avatar"><i class="fa-regular fa-circle-user" id="avatarBtn"></i></div>
+                    <div class="dropdown" id="dropdownMenu">
+                        <a href="../../../tours/pages/TouristTourReservations/touristTourReservations.html"
+                            id="myReservations"><i class="fa-solid fa-book"></i> My Tour Reservations</a>
+                        <a href="../touristRestaurantReservation/touristRestaurantReservation.html"
+                            id="myRestaurantReservations"><i class="fa-solid fa-book"></i> My Restaurants
+                            Reservations</a>
+                        <a href="../../../index.html" id="logoutBtn"><i class="fa-solid fa-arrow-right-from-bracket">
+                            </i> Logout</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div id="review-input-container">
+
+        <div id="restaurant-section">
+
+        </div>
+        
+        <form id="review-form">
+            <label >Rating:</label>
+            <div class="star-rating" id="rating" required>
+                <span data-value="1"><i class="fa-solid fa-star"></i></span>
+                <span data-value="2"><i class="fa-solid fa-star"></i></span>
+                <span data-value="3"><i class="fa-solid fa-star"></i></span>
+                <span data-value="4"><i class="fa-solid fa-star"></i></span>
+                <span data-value="5"><i class="fa-solid fa-star"></i></span>
+            </div>
+            <div id="rating-error-message">Please select a rating before submitting your review.</div>
+            <label for="comment">Comment:</label>
+            <textarea name="comment" id="comment"></textarea>
+
+            <div id="review-message"></div>
+
+            <div id="button-container">
+                <button type="button" id="submit-review">Submit review</button>
+            </div>
+
+        </form>
+
+    </div>
+
+    <script type="module"
+        src="../../../../dist/restaurants/pages/touristRestaurantReview/touristRestaurantReview.js"></script>
+</body>
+
+</html>

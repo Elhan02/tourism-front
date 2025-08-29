@@ -1,5 +1,5 @@
 import { Restaurant } from "../models/restaurant.model";
-import { RestaurantReservation } from "../models/restaurant.reservation";
+import { RestaurantReservation } from "../models/restaurant.reservation.model";
 import { RestaurantReservationFormData } from "../models/restaurant.reservation.formData.model";
 import { RestaurantsResult } from "../models/restaurant.result.model";
 import { RestaurantFormData } from "../models/restaurantForm.data.model";

@@ -1,4 +1,4 @@
-import { RestaurantReservation } from "../models/restaurant.reservation";
+import { RestaurantReservation } from "../models/restaurant.reservation.model";
 
 export class RestaurantReservationService {
     private readonly apiUrl: string;
@@ -38,4 +38,20 @@ export class RestaurantReservationService {
 
     }
 
+    getById(reservationId: number): Promise<RestaurantReservation>{
+        return fetch(`${this.apiUrl}/${reservationId}`)
+        .then(response=>{
+            if(!response.ok){
+                throw{status: response.status, message: response.text}
+            }
+            return response.json();
+        })
+        .then((reservation: RestaurantReservation)=>{
+            return reservation;
+        })
+        .catch(error=>{
+            console.log(`Error: `, error.status);
+            throw error;
+        })
+    }
 }

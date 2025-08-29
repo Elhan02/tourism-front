@@ -1,0 +1,128 @@
+@use "../../../styles/global.scss" as*;
+
+#restaurant-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 35%;
+    padding: 30px;
+    height: 350px;
+    color: white;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 -8px 16px -4px rgba(0, 0, 0, 0.4), // gornja senka
+        -8px 0 16px -4px rgba(0, 0, 0, 0.3), // leva senka
+        8px 0 16px -4px rgba(0, 0, 0, 0.3);
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+
+    * {
+        position: relative;
+        z-index: 1;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+}
+
+#review-input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150px;
+    margin-bottom: 0;
+
+}
+
+#review-form {
+    width: 35%;
+    padding: 30px;
+    background-color: white;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin-top: 0;
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.1),
+        0 4px 12px rgba(0, 0, 0, 0.1),
+        0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+textarea {
+    font-family: Arial, sans-serif;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 18px;
+    resize: none;
+    border: 2px solid black;
+    border-color: #D9D9D9;
+    width: 80%;
+    height: 100px;
+
+    &.error {
+        border-color: #d9534f;
+    }
+}
+
+label {
+    font-size: 20px;
+    padding: 8px;
+    font-weight: bold;
+}
+
+.star-rating {
+    display: inline-block;
+    direction: ltr;
+    padding: 8px;
+}
+
+.star-rating span {
+    font-size: 30px;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.star-rating span.hovered,
+.star-rating span.active {
+    color: gold;
+}
+
+#button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+}
+#submit-review{
+    font-weight: bold;
+    &:hover{
+
+    }
+}
+
+#reservation-meal,
+#reservation-date {
+
+    margin: 5px;
+}
+
+#review-message {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#rating-error-message {
+    display: none;
+    color: #d9534f;
+}

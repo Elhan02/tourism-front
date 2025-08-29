@@ -158,8 +158,6 @@ async function submitRestaurant(): Promise<void> {
             if (!currentRestaurant) {
                 currentRestaurant = await restaurantServices.getById(id);
             }
-            console.log("currentRestaurant:", currentRestaurant);
-            console.log("currentRestaurant.status:", currentRestaurant.status);
 
             if (currentRestaurant.status && currentRestaurant.status.trim() === "objavljeno") {
                 await restaurantServices.updateWithStatus(id, currentRestaurant);
@@ -434,16 +432,13 @@ const priceInputElement = (document.querySelector('#price') as HTMLInputElement)
 const ingredientsInputElement = (document.querySelector('#ingredients') as HTMLInputElement);
 
 function isMealNameValid(mealNameInputElement: HTMLInputElement): boolean {
-    console.log(`Name: ${mealNameInputElement.value}`)
     return mealNameInputElement.value.trim().length >= 2;
 }
 function isPriceValid(priceInputElement: HTMLInputElement): boolean {
-    console.log(`Price: ${priceInputElement.value}`)
     return priceInputElement.value.trim().length > 0;
 }
 
 function isIngredientsValid(ingredientsInputElement: HTMLInputElement): boolean {
-    console.log(`Ingridients: ${ingredientsInputElement.value}`)
     return ingredientsInputElement.value.trim().length > 5;
 }
 
@@ -459,7 +454,6 @@ function checkMealInputValidity() {
         saveMealBtn.disabled = true;
     }
 }
-console.log(nextMealBtn.disabled)
 
 function intializeMealValidationListeners(): void {
     const warnColor = '#d9534f';
