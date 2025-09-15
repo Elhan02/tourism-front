@@ -77,8 +77,19 @@ function renderData(orderBy: string = "name", orderDirection: string = "ASC", cu
                 pCapacity.innerHTML = "<i class=\"fa-solid fa-user\"></i>"
                 pCapacity.append(` x ${restaurant.capacity}`);
 
+                const avgRating = document.createElement('div');
+                avgRating.classList.add("avgRating");
+                if(restaurant.averageRating === 0){
+                    avgRating.textContent = "Još nema ocena – budi prvi koji će oceniti!"
+                    avgRating.classList.add("no-rating")
+                }else{
+                avgRating.textContent = `${restaurant.averageRating.toFixed(2)}`
+                };
+               
+
                 nameSectionDiv.appendChild(pName);
                 nameSectionDiv.appendChild(pCapacity);
+                nameSectionDiv.appendChild(avgRating);
                 restaurantCard.appendChild(nameSectionDiv);
 
                 const lineDiv = document.createElement('div');

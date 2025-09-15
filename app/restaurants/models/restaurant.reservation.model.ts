@@ -1,4 +1,5 @@
 import { Restaurant } from "./restaurant.model";
+import { RestaurantReview } from "./restaurant.review.model";
 
 export interface RestaurantReservation{
     id: number,
@@ -7,5 +8,6 @@ export interface RestaurantReservation{
     mealType: string,
     numberOfGuests: number,
     restaurantId: number,
-    restaurant?: Restaurant
+    restaurant?: Restaurant,
+    review?: RestaurantReview
 }

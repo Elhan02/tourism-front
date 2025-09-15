@@ -86,14 +86,15 @@ h1 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 60%;
+    width: 80%;
+    border-bottom: 1px solid #dcdcdc;
 }
 
 .meal-card {
     display: flex;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     height: 150px;
-    width: 80%;
+    width: 60%;
     border-radius: 10px;
     border-bottom-left-radius: 80px;
     background-color: #F8F8F8;
@@ -120,77 +121,88 @@ img,
 // MODAL
 
 .modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .input-modal-content {
-  background: white;
-  padding: 20px;
-  margin: 15% auto;
-  border-radius: 10px;
-  width: 400px;
-  height: 480px;
-  position: relative;
+    background: white;
+    padding: 20px;
+    margin: 15% auto;
+    border-radius: 10px;
+    width: 400px;
+    height: 480px;
+    position: relative;
 }
 
 .close {
-  position: absolute;
-  right: 20px; top: 15px;
-  font-size: 20px;
-  cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 20px;
+    cursor: pointer;
 }
-h2{
+
+h2 {
     text-align: center;
     margin-bottom: 30px;
 }
-#reservation-intput-form{
+
+#reservation-intput-form {
     font-family: Arial, sans-serif;
     font-size: 18px;
-   
+
 }
-input{
+
+input {
     font-family: Arial, sans-serif;
     font-size: 16px;
 }
-select, option{
+
+select,
+option {
     font-family: Arial, sans-serif;
     font-size: 16px;
 }
-#reservationBtn{
+
+#reservationBtn {
     margin-top: 30px;
 }
 
-.result-modal-content{
-  background: green;
-  color: white;
-  padding: 20px;
-  margin: 2% auto;
-  border-radius: 10px;
-  width: 200px;
-  height: 100px;
-  position: relative;
+.result-modal-content {
+    background: green;
+    color: white;
+    padding: 20px;
+    margin: 2% auto;
+    border-radius: 10px;
+    width: 200px;
+    height: 100px;
+    position: relative;
 
-  &.error{
-    background-color: red;
-  }
+    &.error {
+        background-color: red;
+    }
 }
 
-#reservation-intput-form{
+#reservation-intput-form {
     width: 70%;
 }
 
 .modal2 {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0; top: 0;
-  width: 100%; height: 20%;
-  text-align: center;
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 20%;
+    text-align: center;
 }
 
 #confirmReservationBtn {
@@ -204,41 +216,128 @@ select, option{
 
 
 .tooltip-wrapper {
-  position: relative;
-  display: inline-block;
-  margin: 0 auto;
+    position: relative;
+    display: inline-block;
+    margin: 0 auto;
 }
 
 .tooltiptext {
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 220px;
-  background-color: black;
-  color: white;
-  padding: 6px 10px;
-  border-radius: 6px;
-  text-align: center;
-  z-index: 1000;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease-in-out;
-  white-space: normal;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    background-color: black;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    text-align: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+    white-space: normal;
 }
 
 .tooltiptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
- border-color: black transparent transparent transparent;
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
 
 }
 
 .tooltip-wrapper:hover button:disabled+.tooltiptext {
-  opacity: 1;
+    opacity: 1;
+}
+
+#review-container {
+    width: 60%;
+}
+
+.review-card {
+    border-radius: 10px;
+    border-bottom-left-radius: 80px;
+    height: 200px;
+    width: 90%;
+    display: flex;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    margin: 40px;
+    background-color: #F8F8F8;
+}
+
+.user-section {
+    width: 30%;
+    padding: 10px;
+
+}
+
+.review-section {
+    width: 70%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.rating {
+    display: inline-block;
+    padding: 5px;
+    margin: 10px;
+    background-color: $button-color;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    width: 40px;
+    text-align: center;
+
+}
+
+p {
+    margin: 10px;
+}
+
+select {
+    padding: 8px;
+    background-color: $button-color;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    border-bottom: 3px solid #333;
+}
+
+label {
+    color: #808080;
+}
+
+#view-option-section {
+    margin: 20px;
+    padding: 10px;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+#no-reviews-message {
+    text-align: center;
+    margin: 50px;
+}
+.tourist-username {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+    background-color: $button-color;
+    color: white;
+    border-radius: 50%;
+    font-size: 16px;
+    text-align: center;
+}
+#reviews-title{
+    margin-top: 50px;
+    margin-bottom: 30px;
 }

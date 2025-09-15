@@ -1,0 +1,164 @@
+@use '../../../styles/global.scss' as*;
+
+h1 {
+  text-align: center;
+  margin: 80px;
+}
+
+#body-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#reservation-card-container {
+  width: 1200px;
+  padding: 20px;
+  border-radius: 10px;
+  // background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  // box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-card {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  padding: 20px;
+  display: flex;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.restaurant-picture-container {
+  width: 30%;
+}
+
+.reservation-data-container {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 15px;
+}
+
+label{
+ 
+font-weight: bold;
+font-size: 15px;
+
+}
+
+.review-status-message{
+  display: inline-block;
+  margin-bottom: 30px;
+  font-size: 20px;
+}
+
+p{
+  margin-top: 5px;
+}
+
+img {
+  height: 100%;
+  width: 90%;
+}
+
+.button-section {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+
+}
+
+#cancelBtn {
+  background-color: $warn-color;
+}
+
+.tooltip-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltiptext {
+  position: absolute;
+  bottom: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  background-color: black;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  text-align: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+  white-space: normal;
+}
+
+.tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+
+}
+
+.tooltip-wrapper:hover button:disabled+.tooltiptext {
+  opacity: 1;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1001;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: white;
+  margin: 15% auto;
+  padding: 20px;
+  width: 300px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.modal-buttons button {
+  padding: 8px 16px;
+  cursor: pointer;
+}
+.review-status-message.posted-review{
+  color: #28a745;
+}
+
+.review-status-message.vaiting-review{
+color: #17a2b8;
+}
+.review-status-message.open-review{
+color: #ffc107;
+}
+.review-status-message.closed-review{
+color: #dc3545;
+}
+
